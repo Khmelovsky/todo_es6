@@ -24,3 +24,12 @@ addRecord.addEventListener('submit', event => {
     //console.log(todo);
 
 });
+
+/* Delete ToDo's */
+
+todoList.addEventListener('click', event => {
+    //console.log(event.target)
+    if(event.target.classList.contains('delete')) {
+        event.target.parentElement.remove();
+    }
+});
