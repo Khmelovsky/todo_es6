@@ -1,5 +1,6 @@
 const addRecord = document.querySelector('.add');
 const todoList = document.querySelector('.todos');
+const search = document.querySelector('.search input');
 
 const generatetemplate = (todo) => {
 
@@ -32,4 +33,22 @@ todoList.addEventListener('click', event => {
     if(event.target.classList.contains('delete')) {
         event.target.parentElement.remove();
     }
+});
+
+/* Filtering */
+
+const searchFilter = (typed) => {
+    Array.from(todoList.children)
+        .filter((todo) => !todo.textContent.toLowerCase().includes(typed))
+        .forEach((todo) => todo.classList.add('filtered'));
+    Array.from(todoList.children)
+        .filter((todo) => todo.textContent.toLowerCase().includes(typed))
+        .forEach((todo) => todo.classList.remove('filtered'));
+};
+
+search.addEventListener('keyup', event => {
+   let typed = event.target.value.toLowerCase().trim();
+
+   searchFilter(typed);
+    //console.log(typed);
 });
